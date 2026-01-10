@@ -17,6 +17,12 @@ app.use(
   }),
 );
 
+// routes import
+import healthRouter from './routes/health/healthCheck.routes.js'
+
+
+app.use("/api/v1/healthcheck",healthRouter)
+
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello from backend");
 });
