@@ -1,13 +1,19 @@
+type ValidationErrors = {
+  fieldErrors?: Record<string, string[]>;
+  formErrors?: string[];
+};
+
+
 class ApiError extends Error {
   public readonly statusCode: number;
   public readonly data: null;
   public readonly success: false;
-  public readonly errors: unknown[];
+  public readonly errors?: ValidationErrors | null;
 
   constructor(
     statusCode: number,
     message = "Something went wrong",
-    errors: unknown[] = [],
+    errors?: ValidationErrors,
     stack?: string
   ) {
     super(message);

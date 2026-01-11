@@ -1,5 +1,7 @@
 import express, { type Express, Request, Response } from "express";
 import cors from "cors";
+import authRoute from './routes/main/auth.route.js'
+
 const app: Express = express();
 
 // basic configurations
@@ -22,6 +24,8 @@ import healthRouter from './routes/health/healthCheck.routes.js'
 
 
 app.use("/api/v1/healthcheck",healthRouter)
+
+app.use("/api/v1/auth",authRoute)
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello from backend");
