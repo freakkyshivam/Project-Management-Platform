@@ -27,8 +27,8 @@ app.use("/api/v1/healthcheck",healthRouter)
 
 app.use("/api/v1/auth",authRoute)
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello from backend");
-});
+ // global error middleware
+import {errorHandler} from './middlewares/error.middleware.js'
+ app.use(errorHandler)
 
 export default app;

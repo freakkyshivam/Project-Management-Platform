@@ -14,5 +14,19 @@ export const signupValidation = z.object({
     .regex(/[a-z]/, "Must contain at least one lowercase letter")
     .regex(/[0-9]/, "Must contain at least one number")
     .regex(/[@$!%*?&#]/, "Must contain at least one special character")
-    .nonempty("Password is required")
+    .nonempty("Password is required"),
+    
+   
+
 });
+
+export const verifySignupValidation = z.object({
+   email: z.string().email("Invalid email").nonempty("Email is required"),
+  otp: z.string()
+    .min(6, "OTP must be 6 characters")
+    .max(6, "OTP must be 6 characters")
+    .nonempty("OTP is required"),
+
+     role: z.enum(["admin", "project_admin", "member"])
+});
+

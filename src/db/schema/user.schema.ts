@@ -19,7 +19,7 @@ export const usersTable = pgTable("users", {
 
  email : varchar("email",{length:80}).unique().notNull(),
 
-  role: userRoleEnum("role").notNull(),
+  role: userRoleEnum("role").notNull().default("member"),
 
   accountStatus: accountStatusEnum("account_status")
     .notNull()

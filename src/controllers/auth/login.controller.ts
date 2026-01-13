@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
 import { asyncHandler } from "../../utils/async-handler.js";
-import { ApiResponse } from "../../utils/api-response.js";
 import { ApiError } from "../../utils/api-error.js";
 import { loginValidation } from "../../validators/login.validator.js";
 import axios from "axios";
 import { findUserByEmail } from "../../service/user/findUserByEmail.js";
-
+import { ApiResponseI,LoginResponseI, UserI } from "../../@types/apiResponse.js";
 const BASE_URL = process.env.BASE_URL!;
 
 export const login = asyncHandler(async (req: Request, res: Response) => {
@@ -47,7 +46,15 @@ try {
     error.response?.data?.message || "Login failed"
   );
 }
-
-return res.status(200).json(data);
+ 
+return res
+.status(200)
+.json({
+  success:true,
+  msg: data?.msg,
+  user : data?.user,
+  accessToken : data?.accessToken
+})
+ 
 
 });
